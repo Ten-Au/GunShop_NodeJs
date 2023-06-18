@@ -1,0 +1,35 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <h2>New gun seller</h2>
+    <form class="form" novalidate onsubmit="return validateForm();">
+        <div>
+        <label for="nickName">NickName: <span class="symbol-required">*</span></label>
+        <input type="text" name="nickName" id="nickName" required>
+        <span id="errornickName" class="errors-text"></span>
+        
+        <label for="Experience">Experience: </label>
+        <select name ="Experience" id="Experience">
+            <option value="">-- Choose Experience: </option>
+            <option value="1">Beginner</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+            <option value="4">Master</option>
+            <option value="5">Military specialist</option>
+        </select>
+        <span id="errorExperience" class="errors-text"></span>
+
+        <label for="salary">Salary: <span class="symbol-required">*</span></label>
+        <input type="text" id="salary" name="salary" required>
+        <span id="errorSalary" class="errors-text"></span>
+    </div>
+        <div class="form-buttons">
+            <p id="errorsSumary" class="errors-text"></p>
+            <input type="submit" value="Add" class="form-button-submit">
+            <a href ="/gunsellers" class="form-button-cancel">Cancel</a>
+        </div>
+    </form>
+
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

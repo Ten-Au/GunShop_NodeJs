@@ -1,0 +1,31 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <h2>Edit customer</h2>
+    <form class="form">
+
+        <div>
+        <label for="firstName">Name: <span class="symbol-required">*</span></label>
+        <input type="text" name="firstName" id="firstName" value="Artem" required>
+        <span id="errorFirstName"></span>
+
+        <label for="lastName">LastName: <span class="symbol-required">*</span></label>
+        <input type="text" name="lastName" id="lastName" value="Sydorovych" required>
+        <span id="errorlastName"></span>
+
+        <label for="nickName">NickName: <span ></span></label>
+        <input type="text" name="nickName" id="nickName" value="presidentMira">
+        <span id="errornickName"></span>
+
+        <label for="phoneNumber">PhoneNumber: <span class="symbol-required">*</span></label>
+        <input type ="text" name="phoneNumber" id="phoneNumber" value="797 979 779" required>
+</div>
+        <div class="form-buttons">
+            <p id="errorsSumary"></p>
+            <input type="submit" value="Change" class="form-button-submit">
+            <a href = "/customers" class="form-button-cancel">Cancel</a>
+        </div>
+    </form>
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

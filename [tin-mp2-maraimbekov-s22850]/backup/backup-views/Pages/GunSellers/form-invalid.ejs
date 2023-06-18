@@ -1,0 +1,33 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <h2>New gun seller</h2>
+    <form class="form">
+        <label for="nickName">NickName: <span class="symbol-required">*</span></label>
+        <input type="text" name="nickName" id="nickName" class="error-input" required>
+        <span id="errornickName" class="errors-text">Field is required</span>
+        
+        <label for="Experience">Experience: </label>
+        <select name ="Experience" id="Experience" class="error-input">
+            <option value="">-- Choose Experience: </option>
+            <option value="1">Beginner</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+            <option value="4">Master</option>
+            <option value="5">Military specialist</option>
+        </select>
+        <span id="errorExp" class="errors-text">Choose a proper experience</span>
+
+        <label for="salary">Salary: <span class="symbol-required">*</span></label>
+        <input type="number" id="salary" name="salary" min="5000" max="100000" step="5000" class="error-input" required>
+        <span id="errorSalary" class="errors-text">Field is required</span>
+        <div class="form-buttons">
+            <p id="errorsSumary" class="errors-text">Form contains errors</p>
+            <input type="submit" value="Add" class="form-button-submit">
+            <a href ="list.ejs"><input type="submit" value="Cancel" class="form-button-cancel"></a>
+        </div>
+    </form>
+
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

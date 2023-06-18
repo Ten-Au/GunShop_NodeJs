@@ -1,0 +1,41 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <h2>New appointment</h2>
+    <form class="form" novalidate onsubmit="return validateForm();">
+        <div>
+        <label for="meetingDate">Date: <span class="symbol-required">*</span></label>
+        <input type="date" name="meetingDate" id="meetingDate" min="2020-01-01" max="2024-01-01" required>
+        <span id="errormeetingDate" class="errors-text"></span>
+        
+        <label for="meetingPlace">Meeting place: <span class="symbol-required">*</span></label>
+        <input type="text" name="meetingPlace" id="meetingPlace">
+        <span id="errormeetingPlace" class="errors-text"></span>
+
+        <label for="customer">Customer Phone Number: <span class="symbol-required">*</span></label>
+        <select name ="customer" id="customer">
+            <option value="">-- Choose Existing Number: </option>
+            <option value="1">797 979 779</option>
+            <option value="2">888 222 000</option>
+        </select>
+        <span id="errorCustomer" class="errors-text"></span>
+
+        <label for="gunSeller">Gun Seller Nickname: <span class="symbol-required">*</span></label>
+        <select name ="gunSeller" id="gunSeller">
+            <option value="">-- Choose Existing Gun Seller: </option>
+            <option value="1">Leon</option>
+            <option value="2">Darius</option>
+        </select>
+        <span id="errorGunSeller" class="errors-text"></span>
+
+        </div>
+        <div class="form-buttons">
+            <p id="errorsSumary" class="errors-text"></p>
+            <input type="submit" value="Add" class="form-button-submit">
+            <a href ="/appointments" class="form-button-cancel">Cancel</a>
+        </div>
+    </form>
+
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

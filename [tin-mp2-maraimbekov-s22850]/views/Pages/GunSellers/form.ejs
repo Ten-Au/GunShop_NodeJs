@@ -1,0 +1,98 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <script type="application/javascript" src="/js/validationGunSForm.js"></script>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <h2><%= pageTitle%></h2>
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
+        <div>
+            <input type="hidden" name="_id" value="<%= gun._id%>">
+
+        <label for="gunNick">NickName: <span class="symbol-required">*</span></label>
+        <input type="text" name="gunNick" id="gunNick" placeholder="2 to 15 characters" value="<%= gun.gunNick %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+               class="<%= validationErrors.find(e => e.path.includes('gunNick')) ? 'error-input' : ''%>">
+        <span id="errornickName" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('gunNick'))) {%>
+                <%= validationErrors.find(e => e.path.includes('gunNick')).message%>
+            <% } %>
+        </span>
+
+        <label for="experience">Experience: </label>
+        <select name ="experience" id="experience" value="<%= gun.experience%>"<%= (formMode == 'showDetails') ? 'disabled' : ''%>
+                class="<%= validationErrors.find(e => e.path.includes('experience')) ? 'error-input' : ''%>">
+            <option value="Unknown" <%= (formMode != 'showDetails') && (formMode != 'edit') ? 'selected' : ''%>>-- Choose Experience: </option>
+            <option value="Beginner" <%=(gun.experience=='Beginner') ? 'selected' : ''%>>Beginner</option>
+            <option value="Intermediate" <%=(gun.experience=='Intermediate') ? 'selected' : ''%>>Intermediate</option>
+            <option value="Advanced" <%=(gun.experience=='Advanced') ? 'selected' : ''%>>Advanced</option>
+            <option value="Master" <%=(gun.experience=='Master') ? 'selected' : ''%>>Master</option>
+            <option value="Military Specialist" <%=(gun.experience=='Military Specialist') ? 'selected' : ''%>>Military specialist</option>
+        </select>
+
+
+        <span id="errorExperience" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('experience'))) {%>
+                <%= validationErrors.find(e => e.path.includes('experience')).message%>
+            <% } %>
+        </span>
+
+        <label for="salary">Salary (PLN): <span class="symbol-required">*</span></label>
+        <input type="text" id="salary" name="salary" placeholder="from 5000 to 50 000" value="<%= gun.salary %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+               class="<%= validationErrors.find(e => e.path.includes('salary')) ? 'error-input' : ''%>">
+        <span id="errorSalary" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('salary'))) {%>
+                <%= validationErrors.find(e => e.path.includes('salary')).message%>
+            <% } %>
+        </span>
+    </div>
+        <% if (formMode == 'showDetails') { %>
+            <div class="form-buttons">
+                <a href="/gunsellers/edit/<%= gun._id %>" class="list-actions-button-edit">Edit</a>
+            </div>
+        <% } %>
+
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
+            <% if (formMode != 'showDetails') { %>
+            <input class="form-button-submit" type="submit" value="<%=btnLabel%>"/>
+            <a class="form-button-cancel" href="/gunsellers">Cancel</a>
+            <% } else { %>
+                <a class="form-button-cancel" href="/gunsellers">Return</a>
+            <% } %>
+        </div>
+
+    </form>
+
+    <% if(formMode == 'showDetails') { %>
+    <h3>Appointment details</h3>
+    <table class="table-list">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Customer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (let app of gun.appointments) { %>
+            <% if (admin) { %>
+        <tr>
+            <td><%= app.date.toISOString().split('T')[0]%></td>
+            <td><%= app.location%></td>
+            <td><a href="/appointments/details/<%= app.customer._id%>"><%= app.customer.phoneNumber%></a></td>
+        </tr>
+                <% } else if (app.customer.phoneNumber === loggedUser.phoneNumber) { %>
+                    <td><%= app.date.toISOString().split('T')[0]%></td>
+                    <td><%= app.location%></td>
+                    <td><a href="/appointments/details/<%= app.customer._id%>"><%= app.customer.phoneNumber%></a></td>
+                <% } %>
+        <% } %>
+        </tbody>
+    </table>
+    <% } %>
+
+
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

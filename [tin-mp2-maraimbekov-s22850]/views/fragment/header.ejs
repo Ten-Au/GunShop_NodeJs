@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <link rel="stylesheet" href="/CSS/style.css">
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <title>Azamat's Gun Shop</title>
+</head>
+
+<body>
+<header>
+    <h1> Azamat's Gun Shop</h1>
+    <img src = "/Images/logo.png" alt = "Gunned Skull Logo" width="100" height="100">
+    <% if(!loggedUser) { %>
+        <div id="login">
+            <h5>Log In</h5>
+            <form method="post" action="/login" novalidate>
+                <label for="loginPhoneNumber">Phone Number:</label>
+                <input type="phoneNumber" id="loginPhoneNumber" name="phoneNumber">
+
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="password">
+
+                <input type="submit" value="Sign in">
+                <span id="loginErrors"><%= loginError ? loginError : ''%></span>
+            </form>
+        </div>
+    <% } else { %>
+    <span>You are logged in as: <%=loggedUser.phoneNumber === "228 228 228" ? "admin" : loggedUser.phoneNumber%></span>
+    <div>
+    <a href="/logout" class="form-button-cancel">Sign out</a>
+    </div>
+    <% } %>
+</header>
+
+<nav>
+    <ul>
+        <% if(loggedUser) {%>
+        <li><a href = "/" class="<%= navLocation == 'main' ? 'active' : ''%>">Main Page</a></li>
+        <li><a href = "/Customers" class="<%= navLocation == 'customers' ? 'active' : ''%>">Customers</a></li>
+        <li><a href = "/Appointments" class="<%= navLocation == 'appointments' ? 'active' : ''%>">Appointments</a></li>
+        <li><a href = "/GunSellers" class="<%= navLocation == 'gunsellers' ? 'active' : ''%>">Gun Sellers</a></li>
+        <% }%>
+    </ul>
+</nav>

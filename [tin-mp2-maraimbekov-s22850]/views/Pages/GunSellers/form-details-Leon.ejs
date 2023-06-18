@@ -1,0 +1,61 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <h2>Gun seller details</h2>
+    
+        <form class="form">
+            <div>
+            <label for="nickName">NickName: <span class="symbol-required">*</span></label>
+            <input type="text" name="nickName" id="nickName" value = "Leon" disabled>
+            <span id="errornickName"></span>
+            
+            <label for="Experience">Experience: </label>
+            <select name ="Experience" id="Experience" disabled>
+                <option>-- Choose Experience: </option>
+                <option value="1">Beginner</option>
+                <option value="2">Intermediate</option>
+                <option value="3">Advanced</option>
+                <option value="4">Master</option>
+                <option value="5" selected>Military specialist</option> 
+            </select>
+    
+            <label for="salary">Salary: <span class="symbol-required">*</span></label>
+            <input type="number" id="salary" name="salary" min="5000" max="100000" step="5000" value = "50000" disabled>
+            </div>
+            <div class="form-buttons">
+            <p id="errorsSumary"></p>
+            <a href="/gunsellers/edit/1" class="list-actions-button-edit">Edit</a>
+        </div>
+    </form>
+
+    <h3>Appointment details</h3>
+    <table class="table-list">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2022-12-23</td>
+                <td>Warszawa Centralna</td>
+                <td>Artem</td>
+            </tr>
+            <tr>
+                <td>2023-01-13</td>
+                <td>Warszawa Wchodnia</td>
+                <td>Oleksandr</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div class="form-buttons">
+    <a href="/gunsellers" class="form-button-back">Back</a>
+    </div>
+    
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

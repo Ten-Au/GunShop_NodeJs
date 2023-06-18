@@ -1,0 +1,57 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <h2>Gun Sellers</h2>
+   <table class="table-list">
+    <thead>
+        <tr>
+            <th>NickName</th>
+            <th>Experience</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+   <tbody>
+   <% for (let gun of guns) { %>
+       <% if (admin) {%>
+        <tr>
+            <td><%= gun.gunNick %></td>
+            <td><%= gun.experience %></td>
+            <td><%= gun.salary %></td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a href = "/gunsellers/details/<%= gun._id%>" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href = "/gunsellers/edit/<%= gun._id%>" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href = "/gunsellers/delete/<%= gun._id%>" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+   <% } else { %>
+       <tr>
+           <td><%= gun.gunNick %></td>
+           <td><%= gun.experience %></td>
+           <td><%= gun.salary %></td>
+           <td>
+               <ul class="list-actions">
+                   <li>
+                       <a href = "/gunsellers/details/<%= gun._id%>" class="list-actions-button-details">Details</a>
+                   </li>
+               </ul>
+           </td>
+       </tr>
+   <% } %>
+   <% } %>
+    </tbody>
+   </table>
+    <% if(admin) {%>
+   <p><a href = "/gunsellers/add" class="button-add">Add new gun seller</a></p>
+    <% } %>
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

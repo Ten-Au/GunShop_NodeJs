@@ -1,0 +1,88 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <script type="application/javascript" src="/js/validationAppointmentForm.js"></script>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <h2><%= pageTitle%></h2>
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
+        <div>
+            <input type="hidden" name="_id" value="<%= app._id%>">
+
+
+            <label for="cId">Customer Phone Number: <span class="symbol-required">*</span></label>
+            <select name ="cId" id="cId" required <%=(formMode=='showDetails' ) ? 'disabled' : ''%>
+                    class="<%= validationErrors.find(e => e.path.includes('cId')) ? 'error-input' : ''%>">
+                <% if (formMode !='showEdit' && formMode !='showDetails' ){ %>
+                    <option value="" selected="selected">--Choose Existing Customer--</option>
+                <% } %>
+
+                <% for (let i=0; i<customers.length; i++) { let customer=customers[i]; %>
+                <option value="<%= customer._id%>" label="<%= customer.phoneNumber%>"
+                        <%= (customer._id == app.cId) ? 'selected' : ''%>>
+                </option>
+                <% } %>
+            </select>
+
+            <span id="errorCustomer" class="errors-text">
+                <% if(validationErrors.find(e => e.path.includes('cId'))) {%>
+                    <%= validationErrors.find(e => e.path.includes('cId')).message%>
+                <% } %>
+            </span>
+
+            <label for="gunId">Gun Seller Nickname: <span class="symbol-required">*</span></label>
+            <select name ="gunId" id="gunId" required <%=(formMode=='showDetails' ) ? 'disabled' : ''%>
+                    class="<%= validationErrors.find(e => e.path.includes('gunId')) ? 'error-input' : ''%>">
+                <% if (formMode !='showEdit' && formMode !='showDetails' ){ %>
+                    <option value="" selected="selected">--Choose Existing Gun Seller--</option>
+                <% } %>
+                <% for (let i=0; i<gunSellers.length; i++) { let gunSeller=gunSellers[i]; %>
+                <option value="<%= gunSeller._id%>" label="<%= gunSeller.gunNick%>"
+                        <%= (gunSeller._id == app.gunId) ? 'selected' : ''%>>
+                </option>
+                <% } %>
+            </select>
+            <span id="errorGunSeller" class="errors-text">
+                <% if(validationErrors.find(e => e.path.includes('gunId'))) {%>
+                    <%= validationErrors.find(e => e.path.includes('gunId')).message%>
+                <% } %>
+            </span>
+
+        <label for="date">Date: <span class="symbol-required">*</span></label>
+        <input type="date" name="date" id="date"
+               value="<%= (formMode == 'createNew' || formMode == 'edit') ? app.date : app.date.toISOString().split('T')[0]%>"
+                <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+               class="<%= validationErrors.find(e => e.path.includes('date')) ? 'error-input' : ''%>">
+        <span id="errormeetingDate" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('date'))) {%>
+                <%= validationErrors.find(e => e.path.includes('date')).message%>
+            <% } %>
+        </span>
+        
+        <label for="location">Meeting place: <span class="symbol-required">*</span></label>
+        <input type="text" name="location" id="location" placeholder="10 to 60 characters" value="<%= app.location %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+               class="<%= validationErrors.find(e => e.path.includes('location')) ? 'error-input' : ''%>">
+        <span id="errormeetingPlace" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('location'))) {%>
+                <%= validationErrors.find(e => e.path.includes('location')).message%>
+            <% } %>
+        </span>
+
+        </div>
+        <div class="form-buttons">
+            <% if (formMode == 'showDetails') { %>
+                    <a class="list-actions-button-edit" href="/appointments/edit/<%= app._id %>">Edit</a>
+            <% } %>
+            <p id="errorsSumary" class="errors-text"></p>
+            <% if (formMode != 'showDetails') { %>
+            <input class="form-button-submit" type="submit" value="<%=btnLabel%>"/>
+            <a class="form-button-cancel" href="/appointments">Cancel</a>
+            <% } else { %>
+                <a class="form-button-cancel" href="/appointments">Return</a>
+            <% } %>
+        </div>
+    </form>
+
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

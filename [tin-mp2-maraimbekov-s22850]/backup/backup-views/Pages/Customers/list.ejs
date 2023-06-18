@@ -1,0 +1,60 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <h2>Customers</h2>
+   <table class="table-list">
+    <thead>
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>NickName</th>
+            <th>PhoneNumber</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Artem</td>
+            <td>Sydorovych</td>
+            <td>presidentMira</td>
+            <td>797 979 779</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a href = "/customers/details/1" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href = "/customers/edit/1" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href = "" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Oleksandr</td>
+            <td>Podolich</td>
+            <td>Marquizy</td>
+            <td>888 111 222</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a href = "" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href = "" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href = "" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+
+    </tbody>
+   </table>
+   <p><a href = "/customers/add" class="button-add">Add new customer</a></p>
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

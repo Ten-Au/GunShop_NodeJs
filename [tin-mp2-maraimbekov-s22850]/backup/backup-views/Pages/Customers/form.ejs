@@ -1,0 +1,30 @@
+<%- include('../../fragment/header.ejs') %>
+<main>
+    <h2>New customer</h2>
+    <form class="form" novalidate onsubmit="return validateForm();">
+        <div>
+        <label for="firstName">Name: <span class="symbol-required">*</span></label> 
+        <input type="text" name="firstName" id="firstName" placeholder="2-60 characters" required>
+        <span id="errorFirstName" class="errors-text"></span>
+        
+        <label for="lastName">LastName: <span class="symbol-required">*</span></label>
+        <input type="text" name="lastName" id="lastName" placeholder="2-60 characters" required>
+        <span id="errorlastName" class="errors-text"></span>
+
+        <label for="nickName">NickName: </label>
+        <input type="text" name="nickName" placeholder="2-60 characters" id="nickName">
+        <span id="errornickName" class="errors-text"></span>
+
+        <label for="phoneNumber">PhoneNumber: <span class="symbol-required">*</span></label>
+        <input type ="text" name="phoneNumber" id="phoneNumber" placeholder="0111222333 or +48111222333" required>
+        <span id="errorPhoneNumber" class="errors-text"></span>
+        </div>
+        <div class="form-buttons">
+            <p id="errorsSumary" class="errors-text"></p>
+            <input type="submit" value="Add" class="form-button-submit">
+            <a href ="/customers" class="form-button-cancel">Cancel</a>
+        </div>
+    </form>
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

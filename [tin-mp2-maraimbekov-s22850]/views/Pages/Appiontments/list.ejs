@@ -1,0 +1,68 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <h2>Appointments</h2>
+   <table class="table-list">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Location</th>
+            <th>CustomerPhoneNum</th>
+            <th>GunSellerNick</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+   <tbody>
+   <% for (let app of apps) { %>
+       <% if(loggedUser.phoneNumber === app.customer.phoneNumber) {%>
+        <tr>
+            <td><%= app.date.toISOString().split('T')[0]%></td>
+            <td><%= app.location%></td>
+            <td><%= app.customer.phoneNumber%></td>
+            <td><%= app.gunSeller.gunNick%></td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        
+                        <a href = "/appointments/details/<%= app._id%>" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href = "/appointments/edit/<%= app._id%>" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href = "/appointments/delete/<%= app._id%>" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+   <% } else if(admin) {%>
+       <tr>
+           <td><%= app.date.toISOString().split('T')[0]%></td>
+           <td><%= app.location%></td>
+           <td><%= app.customer.phoneNumber%></td>
+           <td><%= app.gunSeller.gunNick%></td>
+           <td>
+               <ul class="list-actions">
+                   <li>
+
+                       <a href = "/appointments/details/<%= app._id%>" class="list-actions-button-details">Details</a>
+                   </li>
+                   <li>
+                       <a href = "/appointments/edit/<%= app._id%>" class="list-actions-button-edit">Edit</a>
+                   </li>
+                   <li>
+                       <a href = "/appointments/delete/<%= app._id%>" class="list-actions-button-delete">Delete</a>
+                   </li>
+               </ul>
+           </td>
+       </tr>
+   <% } %>
+   <% } %>
+    </tbody>
+   </table>
+    <% if(admin) {%>
+   <p><a href = "/appointments/add" class="button-add">Add new appointment</a></p>
+    <% } %>
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

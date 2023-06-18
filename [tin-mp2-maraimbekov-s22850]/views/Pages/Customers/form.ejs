@@ -1,0 +1,105 @@
+<%- include('../../fragment/header.ejs') %>
+<main>
+    <script type="application/javascript" src="/js/validationCusForm.js"></script>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <h2><%= pageTitle%></h2>
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+        <div>
+            <input type="hidden" name="_id" value="<%= cus._id%>">
+
+        <label for="firstName">Name: <span class="symbol-required">*</span></label> 
+        <input type="text" name="firstName" id="firstName" placeholder="2-60 characters" value="<%= cus.firstName %>"
+        <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+               class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : ''%>">
+        <span id="errorFirstName" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('firstName'))) {%>
+                <%= validationErrors.find(e => e.path.includes('firstName')).message%>
+            <% } %>
+        </span>
+        
+        <label for="lastName">LastName: <span class="symbol-required">*</span></label>
+        <input type="text" name="lastName" id="lastName" placeholder="2-60 characters" value="<%= cus.lastName %>"
+        <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+               class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : ''%>">
+        <span id="errorlastName" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('lastName'))) {%>
+                <%= validationErrors.find(e => e.path.includes('lastName')).message%>
+            <% } %>
+        </span>
+
+        <label for="nickName">NickName: </label>
+        <input type="text" name="nickName" placeholder="2-15 characters" id="nickName" value="<%= cus.nickName %>"
+        <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+               class="<%= validationErrors.find(e => e.path.includes('nickName')) ? 'error-input' : ''%>">
+        <span id="errornickName" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('nickName'))) {%>
+                <%= validationErrors.find(e => e.path.includes('nickName')).message%>
+            <% } %>
+        </span>
+
+        <label for="phoneNumber">PhoneNumber: <span class="symbol-required">*</span></label>
+        <input type ="text" name="phoneNumber" id="phoneNumber" placeholder="e.g. 123 456 789, +1 123 456 789..." value="<%= cus.phoneNumber %>"
+        <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+               class="<%= validationErrors.find(e => e.path.includes('phoneNumber')) ? 'error-input' : ''%>">
+        <span id="errorPhoneNumber" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('phoneNumber'))) {%>
+                <%= validationErrors.find(e => e.path.includes('phoneNumber')).message%>
+            <% } %>
+        </span>
+
+
+            <label for="password">Password: <span class="symbol-required">*</span></label>
+            <input type ="password" name="password" id="password" placeholder="e.g. 123 456 789, +1 123 456 789..." value=""
+                    <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+                   class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : ''%>">
+            <span id="errorPassword" class="errors-text">
+                <% if(validationErrors.find(e => e.path.includes('password'))) {%>
+                    <%= validationErrors.find(e => e.path.includes('password')).message%>
+                <% } %>
+            </span>
+
+        </div>
+        <% if (formMode == 'showDetails') { %>
+        <div class="form-buttons">
+            <a href="/customers/edit/<%= cus._id %>" class="list-actions-button-edit">Edit</a>
+        </div>
+        <% } %>
+
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
+            <% if (formMode != 'showDetails') { %>
+            <input class="form-button-submit" type="submit" value="<%=btnLabel%>"/>
+            <a class="form-button-cancel" href="/customers">Cancel</a>
+            <% } else { %>
+                <a class="form-button-cancel" href="/customers">Return</a>
+            <% } %>
+        </div>
+
+    </form>
+
+    <% if(formMode == 'showDetails') { %>
+    <h3>Appointment details</h3>
+    <table class="table-list">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Gun Seller</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (let app of cus.appointments) { %>
+        <tr>
+            <td><%= app.date.toISOString().split('T')[0]%></td>
+            <td><%= app.location%></td>
+            <td><a href="/appointments/details/<%= app.gunSeller._id%>"><%= app.gunSeller.gunNick%></a></td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <% } %>
+
+
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

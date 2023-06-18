@@ -1,0 +1,58 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <h2>Customer details</h2>
+    
+
+    <form class="form">
+        <div>
+        <label for="firstName">Name: <span class="symbol-required">*</span></label>
+        <input type="text" name="firstName" id="firstName" value="Artem" disabled>
+        <span id="errorFirstName"></span>
+            
+        <label for="lastName">LastName: <span class="symbol-required">*</span></label>
+        <input type="text" name="lastName" id="lastName" value="Sydorovych" disabled>
+        <span id="errorlastName"></span>
+
+        <label for="nickName">NickName: </label>
+        <input type="text" name="nickName" id="nickName" value="presidentMira" disabled>
+        <span id="errornickName"></span>
+
+        <label for="phoneNumber">PhoneNumber: <span class="symbol-required">*</span></label>
+        <input type ="text" name="phoneNumber" id="phoneNumber" value="797 979 779" disabled>
+</div>
+        <div class="form-buttons">
+            <p id="errorsSumary"></p>
+            <a href="/customers/edit/1" class="list-actions-button-edit">Edit</a>
+        </div>
+    </form>
+
+    <h3>Appointment details</h3>
+    <table class="table-list">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Gun Seller</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2022-12-23</td>
+                <td>Warszawa Centralna</td>
+                <td>Leon</td>
+            </tr>
+            <tr>
+                <td>2022-11-30</td>
+                <td>Marszalkowska 32</td>
+                <td>Darius</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="form-buttons">
+    <a href="/customers" class="form-button-back">Back</a>
+    </div>
+    
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

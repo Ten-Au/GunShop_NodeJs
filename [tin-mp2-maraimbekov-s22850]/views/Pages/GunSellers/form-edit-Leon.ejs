@@ -1,0 +1,34 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <h2>Edit gun seller</h2>
+    <form class="form">
+<div>
+        <label for="nickName">NickName: <span class="symbol-required">*</span></label>
+        <input type="text" name="nickName" id="nickName" value = "Leon" required>
+        <span id="errornickName"></span>
+        
+ 
+        <label for="Experience">Experience: </label>
+        <select name ="Experience" id="Experience">
+            <option value="">-- Choose Experience: </option>
+            <option value="1">Beginner</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+            <option value="4">Master</option>
+            <option value="5" selected>Military specialist</option>
+        </select>
+    
+        <label for="salary">Salary: <span class="symbol-required">*</span></label>
+        <input type="number" id="salary" name="salary" min="5000" max="100000" step="5000" value = "50000" required>
+    </div>
+        <div class="form-buttons">
+            <p id="errorsSumary"></p>
+            <input type="submit" value="Add" class="form-button-submit">
+            <a href ="/gunsellers" class="form-button-cancel">Cancel</a>
+        </div>
+
+    </form>
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

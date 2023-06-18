@@ -1,0 +1,38 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <h2>Edit appointment</h2>
+    <form class="form">
+        <div>
+        <label for="meetingDate">Date: <span class="symbol-required">*</span></label>
+        <input type="date" name="meetingDate" id="meetingDate" min="2020-01-01" max="2024-01-01" value = "2022-12-23" required>
+        <span id="errormeetingDate"></span>
+        
+        <label for="meetingPlace">Meeting place: <span class="symbol-required">*</span></label>
+        <input type="text" name="meetingPlace" id="meetingPlace" value = "Warszawa Centralna" required>
+        
+        <label for="customer">Customer Phone Number: <span class="symbol-required">*</span></label>
+        <select name ="customer" id="customer">
+            <option value="">-- Choose Existing Number: </option>
+            <option value="1" selected>797 979 779 </option>
+            <option value="2">888 222 000</option>
+        </select>
+
+        <label for="gunSeller">Gun Seller Nickname: <span class="symbol-required">*</span></label>
+        <select name ="gunSeller" id="gunSeller">
+            <option value="">-- Choose Existing Gun Seller: </option>
+            <option value="1" selected>Leon</option>
+            <option value="2">Darius</option>
+        </select>
+
+        </div>
+        <div class="form-buttons">
+            <p id="errorsSumary"></p>
+            <input type="submit" value="Add" class="form-button-submit">
+            <a href ="/appointments" class="form-button-cancel">Cancel</a>
+        </div>
+    </form>
+
+</main>
+
+<%- include('../../fragment/footer.ejs') %>

@@ -1,0 +1,80 @@
+<%- include('../../fragment/header.ejs') %>
+
+<main>
+    <h2>Appointments</h2>
+   <table class="table-list">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Location</th>
+            <th>CustomerPhoneNum</th>
+            <th>GunSellerNick</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+   <tbody>
+        <tr>
+            <td>2022-12-23</td>
+            <td>Warszawa Centralna</td>
+            <td>797 979 779</td>
+            <td>Leon</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        
+                        <a href = "/appointments/details/1" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href = "/appointments/edit/1" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href = "" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>2023-01-13</td>
+            <td>Warszawa Wchodnia</td>
+            <td>000 000 000</td>
+            <td>Leon</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a href = "" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href = "" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href = "" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>2022-11-30</td>
+            <td>Marszalkowska 32</td>
+            <td>000 000 000</td>
+            <td>Darius</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a href = "" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href = "" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href = "" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+
+    </tbody>
+   </table>
+   <p><a href = "/appointments/add" class="button-add">Add new appointment</a></p>
+</main>
+
+<%- include('../../fragment/footer.ejs') %>
